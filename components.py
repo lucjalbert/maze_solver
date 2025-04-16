@@ -63,11 +63,11 @@ class Cell():
         else:
             fill_color = "gray"
 
+        # Calculate cell center in order to generate points for draw line
         self_center_x = self._x1 + (self._x2 - self._x1) / 2
         self_center_y = self._y1 + (self._y2 - self._y1) / 2
         other_center_x = to_cell._x1 + (to_cell._x2 - to_cell._x1) / 2
         other_center_y = to_cell._y1 + (to_cell._y2 - to_cell._y1) / 2
         l = Line(Point(self_center_x, self_center_y), Point(other_center_x, other_center_y))
-        print(l)
 
         self._win.draw_line(l, fill_color)
