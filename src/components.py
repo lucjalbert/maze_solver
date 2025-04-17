@@ -20,7 +20,7 @@ class Line():
 
 
 class Cell():
-    def __init__(self, win):
+    def __init__(self, win = None):
         self._x1 = None
         self._x2 = None
         self._y1 = None
@@ -40,23 +40,36 @@ class Cell():
         self._y1 = y1
         self._y2 = y2
 
+        if not self._win:
+            return
+
+        l = Line(Point(x1, y1), Point(x1, y2))
         if self.has_left_wall:
-            l = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(l, fill_color)
+        else:
+            self._win.draw_line(l, "white") 
 
+
+        l = Line(Point(x1, y1), Point(x2, y1))
         if self.has_top_wall:
-            l = Line(Point(x1, y1), Point(x2, y1))
             self._win.draw_line(l, fill_color)
+        else:
+            self._win.draw_line(l, "white")
 
+
+        l = Line(Point(x2, y1), Point(x2, y2))
         if self.has_right_wall:
-            l = Line(Point(x2, y1), Point(x2, y2))
             self._win.draw_line(l, fill_color)
+        else:
+            self._win.draw_line(l, "white")
 
+        l = Line(Point(x1, y2), Point(x2, y2))
         if self.has_bottom_wall:
-            l = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(l, fill_color)
+        else:
+            self._win.draw_line(l, "white")
 
-    
+
     def draw_move(self, to_cell, undo=False):
         if not undo:
             fill_color = "red"
@@ -68,6 +81,7 @@ class Cell():
         self_center_y = self._y1 + (self._y2 - self._y1) / 2
         other_center_x = to_cell._x1 + (to_cell._x2 - to_cell._x1) / 2
         other_center_y = to_cell._y1 + (to_cell._y2 - to_cell._y1) / 2
+
         l = Line(Point(self_center_x, self_center_y), Point(other_center_x, other_center_y))
 
         self._win.draw_line(l, fill_color)
