@@ -4,12 +4,11 @@ from maze import Maze
 
 
 def main():
-    win = Window(800, 600)
+    win = Window(2000, 1200)
 
-    maze = Maze(50, 50, 8, 12, 50, 50, win)
+    maze = Maze(50, 50, 12, 15, 50, 50, win, 19)
 
     win.wait_for_close()
-
 
 
 if __name__ == "__main__":
